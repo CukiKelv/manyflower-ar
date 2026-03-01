@@ -2,7 +2,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Many Flower Arts - AR</title>
+
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
@@ -15,9 +17,8 @@
       justify-content: center;
       align-items: center;
 
-      /* Fundo com leve camada branca elegante */
       background-image: 
-        linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
+        linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
         url('Fundo.png');
       background-size: cover;
       background-position: center;
@@ -26,7 +27,6 @@
 
     model-viewer {
       width: 100%;
-      max-width: 600px;
       height: 75vh;
     }
 
@@ -35,27 +35,38 @@
       display: none;
     }
 
-    /* Botão personalizado */
+    /* BOTÃO GRANDE MOBILE */
     .ar-button {
-      width: 95%;
-      max-width: 500px;
-      padding: 20px;
-      margin-bottom: 20px;
+      position: fixed;
+      bottom: 20px;
+      left: 5%;
+      width: 90%;
+      padding: 22px;
       font-size: 20px;
       font-weight: bold;
       background-color: #1f1f1f;
       color: white;
       border: none;
-      border-radius: 14px;
+      border-radius: 18px;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       transition: 0.3s;
     }
 
-    .ar-button:hover {
-      background-color: #333;
+    .ar-button:active {
+      transform: scale(0.97);
     }
 
+    /* Desktop */
+    @media (min-width: 768px) {
+      .ar-button {
+        position: relative;
+        width: 400px;
+        left: auto;
+        bottom: auto;
+        margin-top: 20px;
+      }
+    }
   </style>
 </head>
 
@@ -84,4 +95,3 @@
 
 </body>
 </html>
-
