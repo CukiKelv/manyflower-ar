@@ -76,6 +76,7 @@ model-viewer::part(default-ar-button) {
 
 /* Botão grande */
 .ar-button {
+  display: none;
   width: 95%;
   max-width: 500px;
   padding: 22px;
@@ -96,14 +97,23 @@ model-viewer::part(default-ar-button) {
 }
 
 /* Botão só aparece em dispositivos móveis */
-@media (min-width: 768px) {
-  .ar-button {
-    display: none;
-  }
-  .texto {
-    display: none;
-  }
+<script>
+const modelViewer = document.getElementById("model");
+const arButton = document.querySelector(".ar-button");
+const texto = document.querySelector(".texto");
+
+if (modelViewer.canActivateAR) {
+  arButton.style.display = "block";
+  texto.style.display = "block";
+} else {
+  arButton.style.display = "none";
+  texto.style.display = "none";
 }
+
+function activateAR() {
+  modelViewer.activateAR();
+}
+</script>
 
 </style>
 </head>
@@ -148,4 +158,5 @@ function activateAR() {
 
 </body>
 </html>
+
 
