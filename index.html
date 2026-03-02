@@ -13,35 +13,47 @@
       height: 100vh;
       font-family: Arial, sans-serif;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
 
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-        url('Fundo.png');
+      /* Agora o fundo é só a imagem */
+      background-image: url('Fundo.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
+    /* QUADRADO BRANCO TRANSPARENTE */
+    .card {
+      width: 92%;
+      max-width: 500px;
+      height: 85vh;
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      backdrop-filter: blur(6px);
+    }
+
     /* LOGO */
     .logo {
-      width: 160px;
-      margin-top: 20px;
+      width: 150px;
       margin-bottom: 10px;
     }
 
     model-viewer {
       width: 100%;
-      height: 65vh;
+      height: 100%;
     }
 
-    /* Esconde botão AR padrão */
     model-viewer::part(default-ar-button) {
       display: none;
     }
 
-    /* BOTÃO GRANDE MOBILE */
+    /* BOTÃO MOBILE GRANDE */
     .ar-button {
       position: fixed;
       bottom: 20px;
@@ -72,29 +84,27 @@
         bottom: auto;
         margin-top: 20px;
       }
-
-      model-viewer {
-        height: 75vh;
-      }
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- LOGO -->
-  <img src="Logo.webp" alt="MF Arts Logo" class="logo">
+  <div class="card">
+    <img src="Logo.webp" alt="MF Arts Logo" class="logo">
 
-  <model-viewer
-    id="model"
-    src="FroggyPotfix.glb"
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    camera-controls
-    auto-rotate
-    shadow-intensity="1"
-    exposure="1">
-  </model-viewer>
+    <model-viewer
+      id="model"
+      src="FroggyPotfix.glb"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-controls
+      auto-rotate
+      shadow-intensity="1"
+      exposure="1">
+    </model-viewer>
+  </div>
 
   <button class="ar-button" onclick="activateAR()">
     Ver em Realidade Aumentada
@@ -108,7 +118,3 @@
 
 </body>
 </html>
-
-
-
-
