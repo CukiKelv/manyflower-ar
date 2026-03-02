@@ -38,6 +38,7 @@
       padding: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       backdrop-filter: blur(6px);
+      position: relative; /* IMPORTANTE */
     }
 
     .logo {
@@ -55,12 +56,19 @@
       display: none;
     }
 
-    /* BOTÃO DE TROCA PERSONALIZADO */
+    /* BOTÃO SOBRE O MODELO */
     .model-button {
-      width: 160px;
-      margin-top: 10px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 70px;
       cursor: pointer;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.4s ease, transform 0.2s ease;
+      z-index: 10;
+    }
+
+    .model-button:active {
+      transform: scale(0.95);
     }
 
     .fade-out {
@@ -122,14 +130,13 @@
       exposure="1">
     </model-viewer>
 
-    <!-- BOTÃO DE TROCA -->
+    <!-- BOTÃO SOBREPOSTO -->
     <img 
       id="toggleBtn"
       src="btn-semflor.png"
       class="model-button"
       onclick="toggleModel()"
     >
-
   </div>
 
   <button class="ar-button" onclick="activateAR()">
