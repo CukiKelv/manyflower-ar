@@ -55,58 +55,16 @@
       display: none;
     }
 
-    /* TOGGLE BUTTON */
-    .toggle-container {
+    /* BOTÃO DE TROCA PERSONALIZADO */
+    .model-button {
+      width: 160px;
       margin-top: 10px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: bold;
-    }
-
-    .switch {
-      position: relative;
-      width: 50px;
-      height: 26px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
       cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      border-radius: 34px;
-      transition: .3s;
+      transition: opacity 0.4s ease;
     }
 
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 20px;
-      width: 20px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      border-radius: 50%;
-      transition: .3s;
-    }
-
-    input:checked + .slider {
-      background-color: #1f1f1f;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(24px);
+    .fade-out {
+      opacity: 0;
     }
 
     /* BOTÃO AR */
@@ -164,15 +122,13 @@
       exposure="1">
     </model-viewer>
 
-    <!-- TOGGLE -->
-    <div class="toggle-container">
-      <span>Sem flores</span>
-      <label class="switch">
-        <input type="checkbox" onchange="toggleModel(this)">
-        <span class="slider"></span>
-      </label>
-      <span>Com flores</span>
-    </div>
+    <!-- BOTÃO DE TROCA -->
+    <img 
+      id="toggleBtn"
+      src="btn-semflor.png"
+      class="model-button"
+      onclick="toggleModel()"
+    >
 
   </div>
 
@@ -181,23 +137,36 @@
   </button>
 
   <script>
+    const modelViewer = document.getElementById('model');
+    const toggleBtn = document.getElementById('toggleBtn');
+
+    let isFlower = false;
+
     function activateAR() {
-      document.getElementById('model').activateAR();
+      modelViewer.activateAR();
     }
 
-    function toggleModel(toggle) {
-      const modelViewer = document.getElementById('model');
-      
-      if (toggle.checked) {
-        modelViewer.src = "FroggyPotOrchidBig.compressed.glb";
-      } else {
-        modelViewer.src = "FroggyPotfix.glb";
-      }
+    function toggleModel() {
+
+      toggleBtn.classList.add("fade-out");
+
+      setTimeout(() => {
+
+        if (isFlower) {
+          modelViewer.src = "FroggyPotfix.glb";
+          toggleBtn.src = "btn-semflor.png";
+          isFlower = false;
+        } else {
+          modelViewer.src = "FroggyPotOrchidBig.compressed.glb";
+          toggleBtn.src = "btn-comflor.png";
+          isFlower = true;
+        }
+
+        toggleBtn.classList.remove("fade-out");
+
+      }, 200);
     }
   </script>
 
 </body>
 </html>
-
-
-
