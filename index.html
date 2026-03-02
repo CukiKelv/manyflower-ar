@@ -8,26 +8,30 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
-    body {
+    html, body {
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      height: 100dvh;
+      overflow: hidden; /* 🚫 Remove scroll */
       font-family: Arial, sans-serif;
+    }
+
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
 
-      /* Agora o fundo é só a imagem */
       background-image: url('Fundo.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-    /* QUADRADO BRANCO TRANSPARENTE */
+    /* CARD CENTRAL */
     .card {
       width: 92%;
       max-width: 500px;
-      height: 85vh;
+      height: 78dvh; /* Ajustado para caber com botão */
       background: rgba(255, 255, 255, 0.88);
       border-radius: 24px;
       display: flex;
@@ -38,28 +42,28 @@
       backdrop-filter: blur(6px);
     }
 
-    /* LOGO */
     .logo {
-      width: 150px;
+      width: 140px;
       margin-bottom: 10px;
+      flex-shrink: 0;
     }
 
     model-viewer {
       width: 100%;
-      height: 100%;
+      flex: 1;
     }
 
     model-viewer::part(default-ar-button) {
       display: none;
     }
 
-    /* BOTÃO MOBILE GRANDE */
+    /* BOTÃO FIXO */
     .ar-button {
       position: fixed;
       bottom: 20px;
       left: 5%;
       width: 90%;
-      padding: 22px;
+      padding: 20px;
       font-size: 20px;
       font-weight: bold;
       background-color: #1f1f1f;
@@ -77,6 +81,10 @@
 
     /* Desktop */
     @media (min-width: 768px) {
+      html, body {
+        overflow: auto;
+      }
+
       .ar-button {
         position: relative;
         width: 400px;
